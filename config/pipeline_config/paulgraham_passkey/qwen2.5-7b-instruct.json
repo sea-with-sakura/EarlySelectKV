@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "../_common/sparse_methods.json"
+  ],
+  "pipeline_params": {
+    "model_max_len": 128000,
+    "model_name": "modelzoo/Qwen2.5-7B-Instruct",
+    "batch_size": 1,
+    "out_of_max_len_allowed": true
+  }
+}

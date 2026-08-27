@@ -1,0 +1,31 @@
+{
+    "eval_params": {
+        "benchmark": "math_reasoning",
+        "dataset": "math500",
+        "dataset_path": "dataset/math_reasoning",
+        "hf_dataset": "HuggingFaceH4/MATH-500",
+        "hf_split": "test",
+        "problem_fields": [
+            "problem",
+            "question"
+        ],
+        "answer_fields": [
+            "answer",
+            "solution"
+        ],
+        "instruction": "Solve the following math problem step by step. Put your final answer within \\\\boxed{{}}.\n\nProblem:\n{problem}\n\nSolution:",
+        "max_new_tokens": 4096,
+        "use_chat_template": true,
+        "eval_metrics": [
+            "accuracy"
+        ]
+    },
+    "management": {
+        "sub_dir": {
+            "input_config": "input_config/",
+            "raw_results": "raw_results.json",
+            "result_vis": "result_vis.png",
+            "output_config": "output_config.json"
+        }
+    }
+}

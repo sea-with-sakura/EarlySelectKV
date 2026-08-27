@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "../_common/sparse_methods.json"
+  ],
+  "pipeline_params": {
+    "model_max_len": 7500,
+    "model_name": "modelzoo/Llama-3-8B-Instruct",
+    "earlyselectkv_in_mid": {
+      "lookahead_source": "in_mid",
+      "lookahead_mid_until_layer": 20
+    },
+    "truncation_mode": "middle"
+  }
+}

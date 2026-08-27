@@ -1,0 +1,33 @@
+# Install a CUDA-compatible PyTorch build and FlashAttention separately before
+# installing this file.
+# The artifact relies on a small Tokenizer pad-token extension in this public
+# LitGPT fork. Pin the exact revision used for the paper experiments.
+litgpt @ git+https://github.com/sea-with-sakura/litgpt.git@a58ea5ea91c53fa5ab8a76647257a8a621d0f161
+
+transformers==4.57.3
+datasets
+accelerate
+beautifulsoup4
+jieba
+rouge
+fuzzywuzzy
+sentencepiece
+protobuf
+fsspec
+packaging
+PyYAML
+requests
+wheel
+huggingface-hub
+html2text
+wonderwords
+tqdm
+safetensors
+nltk
+scipy
+python-Levenshtein
+pandas
+matplotlib
+seaborn
+numpy
+pytest

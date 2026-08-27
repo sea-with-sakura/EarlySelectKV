@@ -1,0 +1,20 @@
+{
+    "eval_params": {
+        "dataset": "alpaca12k_decode_calib",
+        "dataset_path": "dataset/longbench",
+        "instruction": "{context}\n\n{input}",
+        "instruction_position": "prefix",
+        "max_new_tokens": 128,
+        "eval_metrics": [
+            "calibration_score"
+        ]
+    },
+    "management": {
+        "sub_dir": {
+            "input_config": "input_config/",
+            "raw_results": "raw_results.json",
+            "result_vis": "result_vis.png",
+            "output_config": "output_config.json"
+        }
+    }
+}

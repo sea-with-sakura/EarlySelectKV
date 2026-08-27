@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "../_common/sparse_methods.json"
+  ],
+  "pipeline_params": {
+    "chat_template": "mistral_instruct",
+    "model_max_len": 32000,
+    "model_name": "modelzoo/Mistral-7B-Instruct-v0.2",
+    "topk": {
+      "skip_layers": 1
+    },
+    "rocketkv": {
+      "skip_layers": 1
+    },
+    "rocketkv_topk": {
+      "skip_layers": 1
+    },
+    "earlyselectkv": {
+      "skip_layers": 1
+    },
+    "earlyselectkv_in": {
+      "skip_layers": 1
+    },
+    "earlyselectkv_in_mid": {
+      "lookahead_source": "in_mid",
+      "lookahead_mid_until_layer": 20,
+      "skip_layers": 1
+    },
+    "earlyselectkv_topk": {
+      "skip_layers": 1
+    },
+    "earlyselectkv_local": {
+      "skip_layers": 1
+    },
+    "earlyselectkv_hsa_local": {
+      "skip_layers": 1
+    },
+    "tokenizer_name": "modelzoo/Mistral-7B-Instruct-v0.2"
+  }
+}

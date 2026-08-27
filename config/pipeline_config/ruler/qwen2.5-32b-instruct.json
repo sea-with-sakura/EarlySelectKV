@@ -1,0 +1,39 @@
+{
+  "extends": [
+    "../_common/sparse_methods.json"
+  ],
+  "pipeline_params": {
+    "chat_template": "qwen",
+    "model_max_len": 32768,
+    "model_name": "modelzoo/Qwen2.5-32B-Instruct",
+    "tokenizer_name": "modelzoo/Qwen2.5-32B-Instruct",
+    "rocketkv": {
+      "skip_layers": 1
+    },
+    "rocketkv_topk": {
+      "skip_layers": 1
+    },
+    "earlyselectkv": {
+      "lookahead_mid_until_layer": 40,
+      "skip_layers": 1
+    },
+    "earlyselectkv_in": {
+      "lookahead_mid_until_layer": 40,
+      "skip_layers": 1
+    },
+    "earlyselectkv_in_mid": {
+      "lookahead_source": "in_mid",
+      "lookahead_mid_until_layer": 40,
+      "skip_layers": 1
+    },
+    "earlyselectkv_topk": {
+      "skip_layers": 1
+    },
+    "earlyselectkv_local": {
+      "skip_layers": 1
+    },
+    "earlyselectkv_hsa_local": {
+      "skip_layers": 1
+    }
+  }
+}
