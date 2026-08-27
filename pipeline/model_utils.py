@@ -53,7 +53,6 @@ def initialize_litgpt_model(
     *,
     path_label: str,
     distribute: bool = False,
-    require_mistral: bool = False,
 ) -> tuple[LLM, Tokenizer]:
     model_name = pipeline_params["model_name"]
     checkpoint_dir = Path(model_name)
@@ -66,9 +65,6 @@ def initialize_litgpt_model(
         raise FileNotFoundError(
             f"Missing converted LitGPT checkpoint files. Expected {lit_ckpt} and {lit_cfg} to exist."
         )
-
-    if require_mistral and "mistral" not in str(model_name).lower():
-        raise NotImplementedError("The LitGPT LAQ pipeline currently supports Mistral only.")
 
     rope_theta_factor = pipeline_params.get("rope_theta_factor", 1.0)
     if rope_theta_factor != 1.0:
