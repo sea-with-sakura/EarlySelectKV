@@ -397,8 +397,7 @@ def prefill_last_token_logits(
         else:
             x = None
             seq_len = int(idx.size(1))
-            for chunk_start in range(0, seq_len, resolved_chunk_size):
-                chunk_end = min(chunk_start + resolved_chunk_size, seq_len)
+            for chunk_start, chunk_end in _iter_chunk_ranges(seq_len, resolved_chunk_size):
                 chunk_input_pos = _slice_input_pos(input_pos, start=chunk_start, end=chunk_end)
                 x = _forward_prefill_chunk(
                     base_model,

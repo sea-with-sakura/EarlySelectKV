@@ -50,7 +50,7 @@ license file in the recovered revision.
 
 ### Experiment-host audits
 
-Two original experiment hosts were audited read-only. Searches covered their
+Three original experiment hosts were audited read-only. Searches covered their
 worktrees, tracked histories, reflogs, stashes, ignored files, unreachable
 commits/blobs, and adjacent Git repositories. Only one untracked worktree
 contained the complete InfLLM-V2 compatibility implementation and archived
@@ -85,6 +85,15 @@ were therefore not copied verbatim: they hard-code local proxies, conda
 environment names, tmux sessions, and GPU IDs, and do not add missing method
 logic. The OOM result is a hardware-capacity observation rather than evidence
 that the selector implementation is incorrect.
+
+The A100 host contained two additional uncommitted core robustness fixes. They
+were migrated with regression coverage: grouped GQA decode now materializes and
+normalizes batched attention biases, and the standard chunked-prefill path uses
+the existing chunk iterator so a one-token tail cannot be misclassified as a
+decode step. The remaining A100-only files were machine-specific launchers, an
+unrelated KVzap prototype, dropped pre-EarlySelect ReMI/UQ experiments, generated
+results, and local copies of the paper and reviews; none are required by the
+final paper artifact.
 
 ### License
 
@@ -125,7 +134,7 @@ the subset exercised by the paper reproduction pipeline.
 - every shell entry point passes `bash -n`;
 - representative dry-runs resolve all paper methods to concrete pipeline
   modules and exact config paths;
-- all 33 model-independent unit tests pass against the pinned public LitGPT
+- all 35 model-independent unit tests pass against the pinned public LitGPT
   revision and Transformers 4.57.3; they cover routing utilities, method aliases, long-generation
   capacity, Qwen post-processing, math answer normalization, Exact-TopK,
   Quest last-page behavior, Loki sparse output, low-rank configuration, and

@@ -1,7 +1,45 @@
 import torch
 
+from pipeline.decode_attention import grouped_decode_attention
 from pipeline.quest.runtime import QuestConfig, QuestRuntime
 from pipeline.topk.runtime import TopKConfig, TopKRuntime
+
+
+class _MaterializedMask:
+    def __init__(self, value: torch.Tensor):
+        self.value = value
+
+    def _materialize(self) -> torch.Tensor:
+        return self.value
+
+
+def test_grouped_decode_attention_normalizes_batched_mask():
+    torch.manual_seed(17)
+    config = type(
+        "Config",
+        (),
+        {
+            "attention_scores_scalar": None,
+            "head_size": 3,
+            "attention_logit_softcapping": None,
+        },
+    )()
+    attention = type("Attention", (), {"config": config, "mscale": 1.0})()
+    q = torch.randn(2, 4, 2, 3)
+    k = torch.randn(2, 2, 3, 3)
+    v = torch.randn(2, 2, 3, 3)
+    batched_mask = torch.tensor(
+        [
+            [[True, False, True], [False, True, True]],
+            [[False, True, True], [True, True, False]],
+        ]
+    )
+    canonical_mask = batched_mask.unsqueeze(1).unsqueeze(2)
+
+    expected = grouped_decode_attention(attention, q, k, v, canonical_mask)
+    actual = grouped_decode_attention(attention, q, k, v, _MaterializedMask(batched_mask))
+
+    torch.testing.assert_close(actual, expected)
 
 
 def test_exact_topk_selects_largest_dot_products():

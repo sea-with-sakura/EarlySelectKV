@@ -8,6 +8,35 @@ import torch.nn.functional as F
 from litgpt.model import do_softcapping
 
 
+def _materialize_attention_bias(mask, *, device: torch.device) -> torch.Tensor:
+    materialize = getattr(mask, "_materialize", None)
+    if callable(materialize):
+        mask = materialize()
+    if not isinstance(mask, torch.Tensor):
+        mask = torch.as_tensor(mask, device=device)
+    return mask.to(device=device)
+
+
+def _normalize_grouped_mask(mask, *, q: torch.Tensor, k: torch.Tensor) -> torch.Tensor:
+    mask = _materialize_attention_bias(mask, device=q.device)
+    q_len = int(q.size(2))
+    key_len = int(k.size(2))
+    if mask.size(-1) != key_len:
+        mask = mask[..., :key_len]
+    if mask.dim() >= 2 and mask.size(-2) != q_len:
+        mask = mask[..., -q_len:, :]
+
+    if mask.dim() == 2:
+        mask = mask.view(1, 1, 1, mask.size(-2), mask.size(-1))
+    elif mask.dim() == 3:
+        mask = mask.unsqueeze(1).unsqueeze(2)
+    elif mask.dim() == 4:
+        mask = mask.unsqueeze(2)
+    elif mask.dim() != 5:
+        raise ValueError(f"Unsupported grouped attention mask shape: {tuple(mask.shape)}")
+    return mask
+
+
 def grouped_decode_attention(
     attn_self,
     q: torch.Tensor,
@@ -34,8 +63,7 @@ def grouped_decode_attention(
     if attn_self.config.attention_logit_softcapping is not None:
         scores = do_softcapping(scores, attn_self.config.attention_logit_softcapping)
     if mask is not None:
-        if mask.ndim == 4:
-            mask = mask.unsqueeze(2)
+        mask = _normalize_grouped_mask(mask, q=q, k=k)
         if mask.dtype == torch.bool:
             scores = scores.masked_fill(~mask, torch.finfo(scores.dtype).min)
         else:
