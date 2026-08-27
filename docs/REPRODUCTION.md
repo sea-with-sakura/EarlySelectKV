@@ -3,7 +3,9 @@
 This guide covers setup and evaluation for the non-TensorRT experiments in
 the EarlySelectKV paper. For an experiment-by-experiment coverage matrix and
 known paper/code consistency decisions, see
-[`OPEN_SOURCE_AUDIT.md`](../OPEN_SOURCE_AUDIT.md).
+[`OPEN_SOURCE_AUDIT.md`](../OPEN_SOURCE_AUDIT.md). The paper's TensorRT system
+implementation and performance-reproduction workflow are available in the
+[`EarlySelectKV` branch of our TensorRT-LLM fork](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV).
 
 ## Included Methods
 
@@ -197,6 +199,7 @@ config/eval_config/
 
 ## Reproduction Boundary
 
-The public artifact reproduces the non-TensorRT quality experiments and
-PyTorch analyses. TensorRT-only throughput, batching, GPU-memory, and decode
-breakdown measurements reported in the paper are intentionally not included.
+This repository reproduces the non-TensorRT quality experiments and PyTorch
+analyses. TensorRT-only throughput, batching, GPU-memory, and decode-breakdown
+measurements are maintained in the separate
+[`EarlySelectKV` TensorRT-LLM branch](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV).

@@ -3,9 +3,11 @@
 This audit maps the experiments reported in the final paper to runnable code
 in this repository. It does not depend on the removable `paper/` source
 directory. TensorRT-only throughput, batching, memory, and decode-breakdown
-experiments are intentionally out of scope.
+experiments are hosted separately in the
+[`EarlySelectKV` branch of our TensorRT-LLM fork](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV)
+and are therefore outside this repository's local audit scope.
 
-## Reproducible non-TensorRT experiments
+## Reproducible PyTorch experiments
 
 | Paper result | Evaluation entry point | Analysis / figure entry point | Status |
 |---|---|---|---|

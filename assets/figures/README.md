@@ -23,5 +23,6 @@ on GitHub:
 - TensorRT system results: `throughput.pdf`, `multi_batch.pdf`,
   `decode_breakdown.pdf`, and `runtime_scope.pdf`.
 
-TensorRT figures are retained as paper assets, but the corresponding runtime
-implementation and reproduction workflow are outside this public artifact.
+TensorRT figures are retained here as paper assets. Their runtime implementation
+and reproduction workflow are released in the
+[`EarlySelectKV` branch of our TensorRT-LLM fork](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV).

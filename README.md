@@ -10,6 +10,7 @@ includes integrations with RocketKV, Quest, Loki, and InfLLM-V2.
 
 [Reproduction guide](docs/REPRODUCTION.md) ·
 [Experiment coverage](OPEN_SOURCE_AUDIT.md) ·
+[TensorRT implementation](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV) ·
 [Figure assets](assets/figures/README.md) ·
 [License](LICENSE)
 
@@ -47,15 +48,15 @@ approximation, relative to Real-Q routing.
 
 The paper also reports up to **12.4%** higher end-to-end output throughput and
 an **11.1%** reduction in GPU-resident memory for the combined KV/K-summary
-pool in a TensorRT-LLM deployment with CPU-offloaded routing. Those TensorRT
-system measurements are paper results; their implementation and reproduction
-workflow are outside this public artifact.
+pool in a TensorRT-LLM deployment with CPU-offloaded routing. The corresponding
+system implementation and reproduction workflow are released separately in the
+[`EarlySelectKV` branch of our TensorRT-LLM fork](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV).
 
 ## Artifact Scope
 
-| Included | Not included |
+| This repository | Companion or external assets |
 |---|---|
-| LongBench, RULER, NIAH/Passkey, and MATH-500 quality evaluation | TensorRT throughput, batching, memory, and decode-breakdown reproduction |
+| LongBench, RULER, NIAH/Passkey, and MATH-500 quality evaluation | [TensorRT throughput, batching, memory, and decode-breakdown reproduction](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV) |
 | RocketKV, Exact-TopK, Quest, Loki, and EarlySelectKV variants | Model checkpoints, generated predictions, and private credentials |
 | Proxy-fidelity, ES-Mix, long-generation, low-rank, and routing-overhead analyses | InfLLM-V2 CUDA-kernel execution or timing |
 | InfLLM-V2 four-task quality compatibility experiment | Training or fine-tuning code |
