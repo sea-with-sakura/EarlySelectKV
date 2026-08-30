@@ -1,10 +1,8 @@
 # Reproduction Guide
 
 This guide covers setup and evaluation for the non-TensorRT experiments in
-the EarlySelectKV paper. For an experiment-by-experiment coverage matrix and
-known paper/code consistency decisions, see
-[`OPEN_SOURCE_AUDIT.md`](../OPEN_SOURCE_AUDIT.md). The paper's TensorRT system
-implementation and performance-reproduction workflow are available in the
+the EarlySelectKV paper. The paper's TensorRT system implementation and
+performance-reproduction workflow are available in the
 [`EarlySelectKV` branch of our TensorRT-LLM fork](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV).
 
 ## Included Methods

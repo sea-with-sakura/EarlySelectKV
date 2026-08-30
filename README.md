@@ -9,7 +9,6 @@ target-layer query for the final attention computation. The repository
 includes integrations with RocketKV, Quest, Loki, and InfLLM-V2.
 
 [Reproduction guide](docs/REPRODUCTION.md) ·
-[Experiment coverage](OPEN_SOURCE_AUDIT.md) ·
 [TensorRT implementation](https://github.com/sea-with-sakura/TensorRT-LLM/tree/EarlySelectKV) ·
 [Figure assets](assets/figures/README.md) ·
 [License](LICENSE)
@@ -60,9 +59,6 @@ system implementation and reproduction workflow are released separately in the
 | RocketKV, Exact-TopK, Quest, Loki, and EarlySelectKV variants | Model checkpoints, generated predictions, and private credentials |
 | Proxy-fidelity, ES-Mix, long-generation, low-rank, and routing-overhead analyses | InfLLM-V2 CUDA-kernel execution or timing |
 | InfLLM-V2 four-task quality compatibility experiment | Training or fine-tuning code |
-
-For the exact paper-to-code mapping and known consistency decisions, see the
-[open-source audit](OPEN_SOURCE_AUDIT.md).
 
 ## Quick Start
 
